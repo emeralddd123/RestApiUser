@@ -1,8 +1,0 @@
-{% load account %}
-{% load i18n %}
-let's see how the things goes
-
-{% block content %}{% blocktrans with site_name='Best_site' site_domain='https://frontend.com/email-confirmation/' %} Thanks for using {{site_name}}!
-{{ site_domain }} 
-To confirm this is correct, go to {{ activate_url }}{% endblocktrans %}{% endblock%}
-
