@@ -5,12 +5,13 @@ from dj_rest_auth.registration.serializers import  ResendEmailVerificationSerial
 from rest_framework.response import Response
 from rest_framework import status
 from django.utils.translation import gettext_lazy as _
+from rest_framework.generics import GenericAPIView
+from dj_rest_auth.app_settings import PasswordResetSerializer
+    
 
-
-
-class Mod_ResendEmailVerificationView(CreateAPIView):
-    permission_classes = (AllowAny,)
-    serializer_class = ResendEmailVerificationSerializer
+class Mod_ResendEmailVerificationView(CreateAPIView):       #this was originally a class from dj_rest_auth.registration.views, 
+    permission_classes = (AllowAny,)                        #it was modified to give adequate Response detail to the FE,
+    serializer_class = ResendEmailVerificationSerializer    #instaed of "ok" all d time 
     queryset = EmailAddress.objects.all()
 
     def create(self, request, *args, **kwargs):
@@ -26,3 +27,38 @@ class Mod_ResendEmailVerificationView(CreateAPIView):
             return Response({'detail': _('Email has been verified already')}, status=status.HTTP_400_BAD_REQUEST)
         return Response({'detail': _('ok')}, status=status.HTTP_200_OK)
     
+
+
+"""
+This was originally a class from dj_rest_auth.views,
+it was modified to give adequate Response detail to the FE,
+instaed of "ok" all d time.
+
+"""
+class Mod_PasswordResetView(GenericAPIView):
+    """
+    Calls Django Auth PasswordResetForm save method.
+
+    Accepts the following POST parameters: email
+    Returns the success/fail message.
+    """
+    
+    serializer_class = PasswordResetSerializer
+    permission_classes = (AllowAny,)
+    throttle_scope = 'dj_rest_auth'
+    queryset = EmailAddress.objects.all()
+    
+    def post(self, request, *args, **kwargs):
+        # Create a serializer with request.data
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        email = EmailAddress.objects.filter(**serializer.validated_data).first()
+        serializer.save()
+        if email and email.verified:
+            return Response({'detail': _('Password reset e-mail has been sent.')},status=status.HTTP_200_OK,)
+        elif not email:
+            return Response({'detail': _('No Account was found with this email')}, status=status.HTTP_404_NOT_FOUND)
+        elif not email.verified:
+            return Response({'detail': _('Email has not been verified already')}, status=status.HTTP_400_BAD_REQUEST)
+
+        
