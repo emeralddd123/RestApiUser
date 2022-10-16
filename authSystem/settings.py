@@ -119,6 +119,12 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+AUTHENTICATION_BACKENDS = (
+   "django.contrib.auth.backends.ModelBackend",
+   "allauth.account.auth_backends.AuthenticationBackend"
+)
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
@@ -164,7 +170,8 @@ REST_FRAMEWORK = {
 }
 
 REST_AUTH_SERIALIZERS = {
-    
+    #'LOGIN_SERIALIZER': 'authSystem.mod_serializers.Mod_LoginSerializer',
+        
     'REST_USE_JWT': True,
     
     'OLD_PASSWORD_FIELD_ENABLED' : True
@@ -178,7 +185,8 @@ JWT_AUTH_COOKIE = 'my-app-auth'
 JWT_AUTH_REFRESH_COOKIE = 'my-refresh-token'
 
 ACCOUNT_EMAIL_REQUIRED=True
-ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
 
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True
 
@@ -187,3 +195,5 @@ ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_EMAIL_CONFIRMATION_COOLDOWN = 180
 
 OLD_PASSWORD_FIELD_ENABLED = True
+
+

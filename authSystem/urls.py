@@ -34,6 +34,4 @@ urlpatterns = [
     path('auth/registration/resend-email/', Mod_ResendEmailVerificationView.as_view(), name="rest_resend_email"),
     path('auth/password/reset/confirm/<str:uidb64>/<str:token>', PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
 
-
 ]
-
