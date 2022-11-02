@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'dj_rest_auth',
     'dj_rest_auth.registration',
     
+    'authApp',
     
     
 ]
@@ -189,7 +190,7 @@ JWT_AUTH_REFRESH_COOKIE = 'my-refresh-token'
 
 ACCOUNT_EMAIL_REQUIRED=True
 
-ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True
 
@@ -199,4 +200,4 @@ ACCOUNT_EMAIL_CONFIRMATION_COOLDOWN = 180
 
 OLD_PASSWORD_FIELD_ENABLED = True
 
-
+ACCOUNT_FORMS = {'reset_password': 'authApp.forms.MyCustomResetPasswordForm'}
