@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-#@ntsu2%&4yp3c0pysj59i_+cbxytos6t_klpxrd05l6n1(pqv'
+SECRET_KEY = 'SECRET_KEY'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -161,8 +161,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_USE_TLS = True  
 EMAIL_HOST = 'smtp-relay.sendinblue.com'  
 EMAIL_PORT = 587  
-EMAIL_HOST_USER = 'usmanabdulsalamolanrewaju@gmail.com'  
-EMAIL_HOST_PASSWORD = 'xsmtpsib-cea1537c38af7d2aee14de9b6f7fbf4e86f3028b80afef7239a8ea3e8aef9cf9-XakSQn0cmDxr87YF'
+EMAIL_HOST_USER = 'EMAIL_HOST_USER'  
+EMAIL_HOST_PASSWORD = 'EMAIL_HOST_PASSWORD'
 
 REST_FRAMEWORK = {
     
@@ -186,6 +186,7 @@ REST_AUTH_SERIALIZERS = {
 REST_USE_JWT = True
 
 JWT_AUTH_COOKIE = 'my-app-auth'
+
 JWT_AUTH_REFRESH_COOKIE = 'my-refresh-token'
 
 ACCOUNT_EMAIL_REQUIRED=True
