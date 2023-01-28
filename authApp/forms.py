@@ -4,7 +4,7 @@ from django.conf import settings
 from allauth.account.forms import ResetPasswordForm
 from django.contrib.sites.shortcuts import get_current_site
 from django.urls import reverse
-from django.utils.translation import gettext, gettext_lazy as _, pgettext
+from django.utils.translation import gettext_lazy as _
 
 from allauth.utils import (
     build_absolute_uri,
@@ -21,8 +21,7 @@ from allauth.account.utils import (
 
 from allauth.account.adapter import get_adapter
 from allauth.account.forms import default_token_generator
-from allauth.account.utils import (filter_users_by_email,
-                                   user_pk_to_url_str, user_username)
+from allauth.account.utils import (user_pk_to_url_str, user_username)
 from allauth.utils import build_absolute_uri
 
 class MyCustomResetPasswordForm(ResetPasswordForm):
