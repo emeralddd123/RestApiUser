@@ -242,3 +242,4 @@ ACCOUNT_EMAIL_CONFIRMATION_COOLDOWN = 180
 OLD_PASSWORD_FIELD_ENABLED = True
 
 ACCOUNT_FORMS = {'reset_password': 'authApp.forms.MyCustomResetPasswordForm'}
+
